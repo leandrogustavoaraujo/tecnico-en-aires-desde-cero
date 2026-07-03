@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Técnico en Aires desde Cero — Área del Alumno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --bg-1:#06141F; --bg-2:#0A2334; --bg-3:#0C2C42;
+    --cyan:#3AC7EA; --cyan-soft:#7FE1F3; --cyan-d:#2AA6C6;
+    --amber:#FFA24D; --amber-d:#F0842A; --gold:#E7B25C;
+    --green:#3FD285; --red:#FF6E55;
+    --ink:#EAF3F8; --soft:#C4D6E0; --muted:#8DA6B5;
+    --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.06);
+    --card:rgba(255,255,255,.045); --card-2:rgba(255,255,255,.07);
+    --shadow:0 24px 60px rgba(0,0,0,.45);
+    --glow:0 0 40px rgba(58,199,234,.16);
+  }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:'Manrope',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    color:var(--ink); line-height:1.68; -webkit-font-smoothing:antialiased;
+    background:
+      radial-gradient(1100px 600px at 12% -5%, rgba(58,199,234,.14), transparent 60%),
+      radial-gradient(900px 620px at 100% 0%, rgba(231,178,92,.10), transparent 55%),
+      linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 46%, var(--bg-3) 100%);
+    background-attachment:fixed; min-height:100vh;
+  }
+  .display{ font-family:'Archivo',sans-serif; letter-spacing:-.02em; }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 20px; }
+
+  /* Top bar */
+  .topbar{ position:sticky; top:0; z-index:60; background:rgba(6,20,31,.72); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
+  .topbar::after{ content:''; position:absolute; left:0; right:0; bottom:-1px; height:1px; background:linear-gradient(90deg,transparent,rgba(58,199,234,.5),rgba(231,178,92,.4),transparent); }
+  .topbar-inner{ max-width:920px; margin:0 auto; padding:13px 20px; display:flex; align-items:center; justify-content:space-between; gap:14px; }
+  .brand{ display:flex; align-items:center; gap:11px; font-family:'Archivo'; font-weight:800; font-size:15px; color:#fff; letter-spacing:-.01em; }
+  .brand .dot{ width:10px; height:10px; border-radius:50%; background:var(--cyan); box-shadow:0 0 14px var(--cyan); }
+  .brand small{ display:block; font-family:'Manrope'; font-weight:600; font-size:10.5px; color:var(--cyan-soft); letter-spacing:1.4px; }
+  .nav-jump{ display:flex; gap:6px; flex-wrap:wrap; }
+  .nav-jump a{ color:var(--soft); text-decoration:none; font-size:12px; font-weight:700; border:1px solid var(--line); padding:5px 11px; border-radius:20px; transition:.16s; }
+  .nav-jump a:hover{ background:linear-gradient(135deg,var(--cyan),var(--cyan-d)); color:#04212c; border-color:transparent; box-shadow:0 4px 14px rgba(58,199,234,.35); }
+
+  /* Hero */
+  .course-hero{ padding:56px 0 46px; position:relative; }
+  .course-hero .ey{ display:inline-block; background:rgba(58,199,234,.12); color:var(--cyan-soft); border:1px solid rgba(58,199,234,.34); padding:6px 15px; border-radius:30px; font-size:11.5px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:18px; }
+  .course-hero h1{ font-family:'Archivo'; font-size:38px; font-weight:900; line-height:1.08; letter-spacing:-.03em; margin-bottom:14px; color:#fff; max-width:760px; }
+  .course-hero h1 .hl{ background:linear-gradient(120deg,var(--cyan-soft),var(--gold)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .course-hero p{ color:var(--soft); font-size:16.5px; max-width:660px; }
+  .progress-wrap{ margin-top:26px; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px 20px; display:flex; align-items:center; gap:18px; box-shadow:var(--shadow); backdrop-filter:blur(8px); }
+  .progress-bar{ flex:1; height:10px; background:rgba(255,255,255,.10); border-radius:10px; overflow:hidden; }
+  .progress-fill{ height:100%; width:0%; background:linear-gradient(90deg,var(--cyan),var(--green)); border-radius:10px; transition:width .5s; box-shadow:0 0 16px rgba(63,210,133,.5); }
+  .progress-txt{ font-family:'Archivo'; font-size:13px; font-weight:800; color:var(--cyan-soft); white-space:nowrap; }
+
+  /* Safety banner */
+  .safety{ background:linear-gradient(135deg,rgba(255,162,77,.12),rgba(255,162,77,.05)); border:1px solid rgba(255,162,77,.28); border-left:4px solid var(--amber); border-radius:14px; padding:17px 20px; margin:28px 0; font-size:14px; color:#F6D9BB; box-shadow:var(--shadow); }
+  .safety b{ color:#FFE7CE; }
+
+  /* Module */
+  .module{ background:var(--card); border:1px solid var(--line); border-radius:18px; margin-bottom:18px; overflow:hidden; box-shadow:var(--shadow); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); transition:border-color .25s, transform .25s; }
+  .module:hover{ border-color:rgba(58,199,234,.28); }
+  .module.open{ border-color:rgba(58,199,234,.34); box-shadow:var(--shadow), var(--glow); }
+  .module-head{ display:flex; align-items:center; gap:16px; padding:22px 24px; cursor:pointer; user-select:none; }
+  .module-num{ flex-shrink:0; width:50px; height:50px; border-radius:14px; background:linear-gradient(135deg,var(--cyan),var(--cyan-d)); color:#04212c; display:flex; align-items:center; justify-content:center; font-family:'Archivo'; font-weight:900; font-size:19px; box-shadow:0 8px 22px rgba(58,199,234,.34); }
+  .module.open .module-num{ background:linear-gradient(135deg,var(--gold),var(--amber)); box-shadow:0 8px 22px rgba(231,178,92,.4); }
+  .module-head-txt{ flex:1; }
+  .module-head-txt .mtag{ font-size:10.5px; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:var(--cyan-soft); }
+  .module-head-txt h2{ font-family:'Archivo'; font-size:20px; font-weight:800; color:#fff; line-height:1.2; letter-spacing:-.01em; }
+  .module-head-txt p{ font-size:13.5px; color:var(--muted); margin-top:3px; }
+  .module-toggle{ flex-shrink:0; width:34px; height:34px; border-radius:50%; border:1px solid var(--line); color:var(--gold); font-size:22px; display:flex; align-items:center; justify-content:center; transition:.25s; }
+  .module.open .module-toggle{ transform:rotate(45deg); background:linear-gradient(135deg,var(--gold),var(--amber)); color:#2a1806; border-color:transparent; }
+  .module-body{ max-height:0; overflow:hidden; transition:max-height .45s ease; }
+  .module.open .module-body{ max-height:14000px; }
+  .module-inner{ padding:6px 24px 24px; border-top:1px solid var(--line-2); }
+
+  .lesson{ padding:20px 0; border-bottom:1px solid var(--line-2); }
+  .lesson:last-child{ border-bottom:none; padding-bottom:2px; }
+  .lesson h3{ font-family:'Archivo'; font-size:17px; font-weight:800; color:#fff; margin-bottom:9px; display:flex; align-items:center; gap:10px; letter-spacing:-.01em; }
+  .lesson h3 .lz{ flex-shrink:0; font-family:'Archivo'; font-size:12px; font-weight:800; color:#04212c; background:linear-gradient(135deg,var(--cyan-soft),var(--cyan)); padding:3px 9px; border-radius:7px; }
+  .lesson p{ font-size:14.8px; color:var(--soft); margin-bottom:11px; }
+  .lesson ul,.lesson ol{ margin:0 0 12px 20px; }
+  .lesson li{ font-size:14.8px; color:var(--soft); margin-bottom:7px; }
+  .lesson li::marker{ color:var(--cyan); }
+  .lesson b{ color:#fff; font-weight:700; }
+
+  .callout{ border-radius:12px; padding:13px 16px; font-size:13.6px; margin:13px 0; border:1px solid transparent; }
+  .tip{ background:rgba(63,210,133,.10); border-color:rgba(63,210,133,.26); border-left:3px solid var(--green); color:#B9F0D2; }
+  .warn{ background:rgba(255,110,85,.10); border-color:rgba(255,110,85,.26); border-left:3px solid var(--red); color:#FFCBC0; }
+  .note{ background:rgba(58,199,234,.10); border-color:rgba(58,199,234,.26); border-left:3px solid var(--cyan); color:#BCE8F5; }
+  .callout b{ color:#fff; }
+
+  /* Material de apoyo */
+  .videobox{ background:var(--card-2); border:1px solid var(--line); border-left:4px solid var(--cyan); border-radius:14px; padding:16px 17px; margin-top:20px; }
+  .videobox .vb-label{ display:flex; align-items:center; gap:8px; font-family:'Archivo'; font-size:11px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:var(--cyan-soft); margin-bottom:12px; }
+  .videobox .vb-frame{ position:relative; display:block; width:100%; padding-bottom:56.25%; border-radius:12px; overflow:hidden; background:#000; text-decoration:none; box-shadow:0 12px 30px rgba(0,0,0,.4); }
+  .videobox .vb-frame img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .videobox .vb-play{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(4,16,24,.34); transition:.16s; }
+  .videobox .vb-frame:hover .vb-play{ background:rgba(4,16,24,.16); }
+  .videobox .vb-play .pbtn{ width:70px; height:49px; background:#FF0000; border-radius:14px; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 22px rgba(0,0,0,.5); transition:.16s; }
+  .videobox .vb-frame:hover .vb-play .pbtn{ transform:scale(1.07); }
+  .videobox .vb-play .pbtn::after{ content:''; border-left:20px solid #fff; border-top:12px solid transparent; border-bottom:12px solid transparent; margin-left:5px; }
+  .videobox .vb-cta{ position:absolute; bottom:11px; right:12px; background:rgba(0,0,0,.72); color:#fff; font-size:12px; font-weight:700; padding:5px 11px; border-radius:7px; }
+  .videobox .vb-note{ font-size:12.5px; color:var(--muted); margin-top:11px; }
+  .videobox .vb-note b{ color:var(--soft); }
+
+  .done-row{ margin-top:18px; }
+  .done-btn{ display:inline-flex; align-items:center; gap:9px; background:rgba(255,255,255,.05); border:1px solid var(--line); color:var(--soft); font-family:'Archivo'; font-weight:700; font-size:13.5px; padding:10px 18px; border-radius:11px; cursor:pointer; transition:.16s; }
+  .done-btn:hover{ border-color:rgba(63,210,133,.45); color:#fff; }
+  .done-btn .bx{ width:18px; height:18px; border:2px solid var(--muted); border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:12px; color:transparent; transition:.16s; }
+  .module.done .done-btn{ background:rgba(63,210,133,.14); border-color:var(--green); color:#B9F0D2; }
+  .module.done .done-btn .bx{ background:var(--green); border-color:var(--green); color:#04241a; }
+
+  /* Bonos */
+  .bonos-sec{ position:relative; border-radius:20px; padding:34px 30px; margin:34px 0; overflow:hidden;
+    background:linear-gradient(135deg, rgba(231,178,92,.14), rgba(58,199,234,.08)), rgba(255,255,255,.045);
+    border:1px solid rgba(231,178,92,.28); box-shadow:var(--shadow); }
+  .bonos-sec h2{ font-family:'Archivo'; font-size:24px; font-weight:900; margin-bottom:6px; color:#fff; letter-spacing:-.02em; }
+  .bonos-sec .sub{ color:var(--soft); font-size:14.5px; margin-bottom:22px; }
+  .bono-row{ display:flex; align-items:center; gap:15px; background:rgba(0,0,0,.22); border:1px solid var(--line); border-radius:14px; padding:15px 17px; margin-bottom:12px; transition:.16s; }
+  .bono-row:hover{ border-color:rgba(231,178,92,.4); }
+  .bono-ic{ flex-shrink:0; width:46px; height:46px; border-radius:12px; background:linear-gradient(135deg,rgba(58,199,234,.28),rgba(231,178,92,.22)); display:flex; align-items:center; justify-content:center; font-size:21px; }
+  .bono-row .bt{ flex:1; }
+  .bono-row .bt strong{ font-family:'Archivo'; font-size:15.5px; display:block; color:#fff; }
+  .bono-row .bt span{ font-size:13px; color:var(--muted); }
+  .bono-dl{ flex-shrink:0; background:linear-gradient(135deg,var(--gold),var(--amber)); color:#2a1806; text-decoration:none; font-family:'Archivo'; font-weight:800; font-size:13px; padding:10px 18px; border-radius:10px; transition:.16s; box-shadow:0 6px 18px rgba(231,178,92,.3); }
+  .bono-dl:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(231,178,92,.42); }
+
+  footer{ text-align:center; padding:34px 20px 56px; color:var(--muted); font-size:13px; border-top:1px solid var(--line-2); margin-top:10px; }
+  footer p{ max-width:660px; margin:0 auto 6px; }
+  footer p:first-child{ color:var(--soft); font-family:'Archivo'; font-weight:700; }
+
+  @media (max-width:640px){
+    .topbar-inner{ flex-direction:column; align-items:flex-start; }
+    .nav-jump{ width:100%; }
+    .course-hero{ padding:40px 0 34px; }
+    .course-hero h1{ font-size:28px; }
+    .module-head{ padding:17px; gap:13px; }
+    .module-num{ width:44px; height:44px; font-size:17px; }
+    .module-inner{ padding:6px 17px 20px; }
+    .bono-row{ flex-wrap:wrap; }
+    .bono-dl{ width:100%; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="dot"></span><div>Técnico en Aires desde Cero<small>ÁREA DEL ALUMNO</small></div></div>
+    <nav class="nav-jump">
+      <a href="#m1">1</a><a href="#m2">2</a><a href="#m3">3</a><a href="#m4">4</a><a href="#m5">5</a><a href="#m6">6</a><a href="#bonos">Bonos</a>
+    </nav>
+  </div>
+</div>
+
+<section class="course-hero">
+  <div class="wrap">
+    <span class="ey">Bienvenido al curso</span>
+    <h1>Aprende el oficio de la <span class="hl">refrigeración y el aire acondicionado</span>, paso a paso.</h1>
+    <p>Este es tu material completo. Avanza módulo por módulo a tu ritmo. Cada lección va directo al grano: qué es, cómo se hace y qué cuidados tener para trabajar con seguridad y verte profesional.</p>
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-txt" id="progressTxt">0 / 6 módulos</div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <div class="safety">
+    <b>⚠ Aviso importante — léelo antes de empezar.</b> Este curso es <b>introductorio y práctico</b>. La instalación eléctrica y el manejo de gas refrigerante implican riesgos reales y, en muchos países, exigen herramientas específicas, normas de seguridad y habilitaciones. Trabaja siempre con la <b>energía cortada</b>, usa <b>equipo de protección</b>, <b>no liberes refrigerante a la atmósfera</b> (es dañino y en muchos lugares está prohibido) y, ante cualquier duda o trabajo regulado, busca formación oficial y acompañamiento profesional.
+  </div>
+
+  <!-- MÓDULO 1 -->
+  <div class="module open" id="m1" data-mod="1">
+    <div class="module-head">
+      <div class="module-num">01</div>
+      <div class="module-head-txt"><div class="mtag">Fundamentos</div><h2>Cómo funciona el frío</h2><p>La base que todo técnico entiende antes de tocar un equipo.</p></div>
+      <div class="module-toggle">+</div>
+    </div>
+    <div class="module-body"><div class="module-inner">
+
+      <div class="lesson">
+        <h3><span class="lz">1.1</span> El frío no se crea: se mueve el calor</h3>
+        <p>Un aire acondicionado no "fabrica frío". Lo que hace es <b>sacar el calor</b> de un ambiente y llevarlo a otro. Por eso la unidad de adentro enfría la habitación mientras la de afuera expulsa aire caliente. Entender esto cambia toda tu forma de diagnosticar: cuando un equipo "no enfría", casi siempre es porque ese traslado de calor se interrumpió en algún punto.</p>
+        <div class="callout note"><b>Idea clave:</b> el refrigerante es el "mensajero" que transporta el calor de un lado a otro, cambiando de estado (de líquido a gas y de gas a líquido) una y otra vez.</div>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">1.2</span> El ciclo de refrigeración (4 componentes)</h3>
+        <p>Todo equipo de frío funciona con el mismo ciclo. Memoriza estos cuatro componentes y qué hace cada uno:</p>
+        <ol>
+          <li><b>Compresor</b> (en la unidad exterior): es el "corazón". Comprime el gas refrigerante y lo pone a alta presión y temperatura.</li>
+          <li><b>Condensador</b> (unidad exterior): el gas caliente libera su calor al aire de afuera y se convierte en líquido.</li>
+          <li><b>Dispositivo de expansión</b> (válvula o capilar): reduce bruscamente la presión del líquido, enfriándolo mucho.</li>
+          <li><b>Evaporador</b> (unidad interior): ese líquido frío absorbe el calor del ambiente y se evapora. Ahí es donde sale el aire frío.</li>
+        </ol>
+        <p>Después vuelve al compresor y el ciclo se repite. <b>Alta presión</b> del lado del condensador, <b>baja presión</b> del lado del evaporador: esa diferencia es lo que medirás con los manómetros.</p>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">1.3</span> Las partes de un minisplit</h3>
+        <p>El minisplit es el equipo más común y el mejor para empezar. Sus partes:</p>
+        <ul>
+          <li><b>Unidad interior (evaporadora):</b> va en la pared del ambiente. Enfría el aire.</li>
+          <li><b>Unidad exterior (condensadora):</b> va afuera. Tiene el compresor y expulsa el calor.</li>
+          <li><b>Tuberías de cobre:</b> conectan las dos unidades (línea de líquido, más delgada, y línea de succión, más gruesa).</li>
+          <li><b>Manguera de drenaje:</b> saca el agua que condensa la unidad interior.</li>
+          <li><b>Cableado eléctrico y de comunicación:</b> alimenta y coordina ambas unidades.</li>
+        </ul>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">1.4</span> Conceptos que debes manejar</h3>
+        <ul>
+          <li><b>BTU:</b> mide la capacidad de enfriamiento. Cuantos más BTU, más grande el ambiente que enfría (ej: 12.000 BTU para una habitación estándar).</li>
+          <li><b>Tonelada de refrigeración:</b> equivale a 12.000 BTU. Un equipo de "una tonelada" = 12.000 BTU.</li>
+          <li><b>Refrigerante:</b> el gas del sistema. Hoy los más usados son <b>R-410A</b> y <b>R-32</b>. El viejo <b>R-22</b> está en desuso. Nunca se mezclan entre sí.</li>
+          <li><b>Eficiencia (SEER):</b> cuánto enfría por energía consumida. Cuanto más alto, menos gasta el equipo.</li>
+        </ul>
+        <div class="callout tip"><b>Tip de venta:</b> saber recomendar la capacidad correcta (BTU) según el tamaño del ambiente ya te hace ver como profesional frente al cliente.</div>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">1.5</span> Tipos de equipos</h3>
+        <ul>
+          <li><b>De ventana:</b> una sola pieza. Cada vez menos común.</li>
+          <li><b>Minisplit mural:</b> el más vendido en casas. Aquí concentramos el curso.</li>
+          <li><b>Multisplit:</b> una condensadora para varias unidades interiores.</li>
+          <li><b>Cassette / piso-techo:</b> más usados en comercios y oficinas.</li>
+          <li><b>Central / por ductos:</b> para grandes espacios; requiere más especialización.</li>
+        </ul>
+        <div class="callout note"><b>Para empezar:</b> enfócate en <b>minisplit</b>. Es el que más se instala, más se repara y da más trabajo recurrente.</div>
+      </div>
+
+      <div class="videobox">
+        <div class="vb-label">▶ Material de apoyo</div>
+        <a class="vb-frame" href="https://www.youtube.com/watch?v=okIBY6wZsx8" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/okIBY6wZsx8/hqdefault.jpg" alt="Cómo funciona el ciclo de refrigeración" loading="lazy"><span class="vb-play"><span class="pbtn"></span></span><span class="vb-cta">Ver en YouTube ▶</span></a>
+        <p class="vb-note"><b>Complementa</b> este módulo con este video que explica el ciclo de refrigeración de forma visual. Recurso externo de apoyo, como complemento a este módulo.</p>
+      </div>
+
+      <div class="done-row"><button class="done-btn" onclick="toggleDone(1)"><span class="bx">✓</span> Marcar módulo como completado</button></div>
+    </div></div>
+  </div>
+
+  <!-- MÓDULO 2 -->
+  <div class="module" id="m2" data-mod="2">
+    <div class="module-head">
+      <div class="module-num">02</div>
+      <div class="module-head-txt"><div class="mtag">Instalación</div><h2>Instalar un minisplit paso a paso</h2><p>El servicio más solicitado y mejor pagado.</p></div>
+      <div class="module-toggle">+</div>
+    </div>
+    <div class="module-body"><div class="module-inner">
+
+      <div class="lesson">
+        <h3><span class="lz">2.1</span> Herramientas y materiales</h3>
+        <p>Antes de una instalación, ten a la mano:</p>
+        <ul>
+          <li>Taladro y brocas (incluida broca de pared/concreto y sierra copa para el paso de tuberías)</li>
+          <li>Juego de manómetros (manifold), bomba de vacío y básica de refrigeración</li>
+          <li>Abocardador (flaring), cortatubos y escariador para el cobre</li>
+          <li>Nivel, cinta métrica, llaves de torque, destornilladores y multímetro</li>
+          <li>Soportes, tacos/tornillos, cinta de aislar, aislante para tuberías y manguera de drenaje</li>
+        </ul>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">2.2</span> Elegir la ubicación</h3>
+        <p><b>Unidad interior:</b> a buena altura, sin muebles ni cortinas que bloqueen el flujo de aire, con espacio libre alrededor y con caída para que el drenaje corra por gravedad.</p>
+        <p><b>Unidad exterior:</b> lugar ventilado, firme, con espacio para que expulse el calor, de fácil acceso para mantenimiento y lo más cerca posible de la interior para no gastar tubería de más.</p>
+        <div class="callout tip"><b>Regla práctica:</b> mientras más corta y directa sea la tubería entre las dos unidades, mejor funciona el equipo y más fácil es la instalación.</div>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">2.3</span> Montar la unidad interior y pasar las tuberías</h3>
+        <ol>
+          <li>Fija la <b>placa de montaje</b> a la pared, bien nivelada.</li>
+          <li>Marca y perfora el orificio para el paso de tuberías, con una leve inclinación hacia afuera (ayuda al drenaje).</li>
+          <li>Pasa las tuberías de cobre, el cable y la manguera de drenaje por el orificio.</li>
+          <li>Cuelga la unidad interior en la placa y verifica que quede firme.</li>
+        </ol>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">2.4</span> Conexión de tuberías y eléctrica</h3>
+        <p>Corta el cobre a medida con el cortatubos (nunca con sierra, deja rebabas). Escaria la punta, haz el <b>abocardado (flare)</b> parejo y conecta a las válvulas apretando con la llave de torque: ni flojo (fuga) ni pasado (dañas el flare).</p>
+        <p>Aísla bien las tuberías. Para la parte eléctrica, respeta el diagrama del equipo: alimentación y cable de comunicación entre unidades.</p>
+        <div class="callout warn"><b>Seguridad eléctrica:</b> trabaja siempre con el <b>circuito sin energía</b>. Verifica con el multímetro que no haya tensión antes de conectar. Un error aquí es peligroso.</div>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">2.5</span> Vacío del sistema (paso que muchos saltan… y no deben)</h3>
+        <p>Antes de liberar el refrigerante, hay que hacer <b>vacío</b> en las tuberías con la bomba de vacío. ¿Por qué? Porque adentro queda <b>aire y humedad</b>, y eso reduce el rendimiento, genera fallas y con el tiempo daña el compresor.</p>
+        <ol>
+          <li>Conecta el manifold a la válvula de servicio y a la bomba de vacío.</li>
+          <li>Deja la bomba trabajando el tiempo necesario hasta alcanzar un buen vacío.</li>
+          <li>Cierra y observa que el vacío se <b>mantenga</b>: si sube, hay una fuga que debes corregir antes de seguir.</li>
+        </ol>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">2.6</span> Liberar el refrigerante y probar</h3>
+        <ol>
+          <li>Con el vacío confirmado, abre las <b>válvulas de servicio</b> para liberar el refrigerante que ya trae la unidad exterior hacia todo el sistema.</li>
+          <li>Revisa que no haya fugas en las uniones (puedes usar agua jabonosa: si burbujea, hay fuga).</li>
+          <li>Enciende el equipo, verifica que enfríe, mide temperaturas y presiones y confirma que el drenaje corra sin gotear adentro.</li>
+        </ol>
+        <div class="callout tip"><b>Cierre profesional:</b> deja el área limpia, explícale al cliente el uso básico y la importancia del mantenimiento. Ese detalle te consigue el próximo trabajo.</div>
+      </div>
+
+      <div class="videobox">
+        <div class="vb-label">▶ Material de apoyo</div>
+        <a class="vb-frame" href="https://www.youtube.com/watch?v=MTScYACQ1PY" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/MTScYACQ1PY/hqdefault.jpg" alt="Cómo instalar un minisplit paso a paso" loading="lazy"><span class="vb-play"><span class="pbtn"></span></span><span class="vb-cta">Ver en YouTube ▶</span></a>
+        <p class="vb-note"><b>Complementa</b> este módulo con esta instalación de minisplit paso a paso. Recurso externo de apoyo, como complemento a este módulo.</p>
+      </div>
+
+      <div class="done-row"><button class="done-btn" onclick="toggleDone(2)"><span class="bx">✓</span> Marcar módulo como completado</button></div>
+    </div></div>
+  </div>
+
+  <!-- MÓDULO 3 -->
+  <div class="module" id="m3" data-mod="3">
+    <div class="module-head">
+      <div class="module-num">03</div>
+      <div class="module-head-txt"><div class="mtag">Mantenimiento</div><h2>Mantenimiento preventivo</h2><p>El servicio recurrente que genera clientes fieles.</p></div>
+      <div class="module-toggle">+</div>
+    </div>
+    <div class="module-body"><div class="module-inner">
+
+      <div class="lesson">
+        <h3><span class="lz">3.1</span> Por qué el mantenimiento es tu mejor negocio</h3>
+        <p>La instalación se hace una vez; el <b>mantenimiento se repite</b>. Un equipo bien mantenido enfría mejor, gasta menos luz y dura más años. Ofrecer mantenimiento periódico te da <b>ingresos recurrentes</b> y una cartera de clientes que te vuelven a llamar cada temporada.</p>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">3.2</span> Limpieza de filtros y unidad interior</h3>
+        <ol>
+          <li>Apaga y desconecta el equipo.</li>
+          <li>Retira los <b>filtros</b>, lávalos con agua (sin productos agresivos) y déjalos secar.</li>
+          <li>Limpia la carcasa y las aspas del ventilador interior con cuidado.</li>
+          <li>Un filtro sucio es la causa #1 de "enfría poco" y de mayor consumo eléctrico.</li>
+        </ol>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">3.3</span> Limpieza de serpentines y unidad exterior</h3>
+        <p>Limpia el <b>serpentín</b> (las aletas metálicas) de la unidad interior y exterior, donde se acumula polvo y grasa que bloquean el intercambio de calor. La unidad exterior suele juntar hojas, tierra y suciedad que reducen mucho su eficiencia.</p>
+        <div class="callout warn"><b>Cuidado:</b> las aletas son filosas y se doblan con facilidad. Trabaja con guantes y sin usar demasiada presión de agua directa sobre componentes eléctricos.</div>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">3.4</span> Drenaje: la causa más común de goteos</h3>
+        <p>Con el tiempo, la manguera de drenaje se tapa con lodo y moho, y el agua termina goteando por la unidad interior. Revisa y <b>destapa el drenaje</b>, verifica que tenga caída correcta y que el agua salga libremente al exterior.</p>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">3.5</span> Revisión eléctrica y de gas</h3>
+        <p>Revisa que las conexiones eléctricas estén firmes y sin puntos quemados. Con los manómetros, verifica que las <b>presiones</b> estén en rango: presión baja puede indicar falta de gas (posible fuga), presión alta puede indicar suciedad o problemas de condensación.</p>
+        <div class="callout note"><b>Recuerda:</b> si falta gas, <b>hay una fuga</b> en alguna parte. Recargar sin encontrar la fuga es un parche temporal, no una solución.</div>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">3.6</span> Checklist de servicio y frecuencia</h3>
+        <p>Un mantenimiento completo incluye: filtros, serpentines, drenaje, revisión eléctrica, presiones, y prueba de funcionamiento con medición de temperatura. Frecuencia recomendada: cada <b>3 a 6 meses</b> en uso normal, más seguido en zonas de mucho polvo o uso intenso.</p>
+        <div class="callout tip"><b>Estrategia:</b> ofrece a tus clientes un "plan de mantenimiento" cada temporada. Es la forma más simple de asegurar trabajo constante.</div>
+      </div>
+
+      <div class="videobox">
+        <div class="vb-label">▶ Material de apoyo</div>
+        <a class="vb-frame" href="https://www.youtube.com/watch?v=tpFJC7hCweY" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/tpFJC7hCweY/hqdefault.jpg" alt="Mantenimiento y limpieza de un minisplit" loading="lazy"><span class="vb-play"><span class="pbtn"></span></span><span class="vb-cta">Ver en YouTube ▶</span></a>
+        <p class="vb-note"><b>Complementa</b> este módulo con este mantenimiento y limpieza de minisplit paso a paso. Recurso externo de apoyo, como complemento a este módulo.</p>
+      </div>
+
+      <div class="done-row"><button class="done-btn" onclick="toggleDone(3)"><span class="bx">✓</span> Marcar módulo como completado</button></div>
+    </div></div>
+  </div>
+
+  <!-- MÓDULO 4 -->
+  <div class="module" id="m4" data-mod="4">
+    <div class="module-head">
+      <div class="module-num">04</div>
+      <div class="module-head-txt"><div class="mtag">Diagnóstico</div><h2>Diagnóstico y reparación</h2><p>Cómo encontrar la falla y resolverla con criterio.</p></div>
+      <div class="module-toggle">+</div>
+    </div>
+    <div class="module-body"><div class="module-inner">
+
+      <div class="lesson">
+        <h3><span class="lz">4.1</span> El método: síntoma → causa → solución</h3>
+        <p>No adivines. Todo diagnóstico sigue el mismo orden: escucha el <b>síntoma</b> que reporta el cliente, revisa las <b>causas posibles</b> de la más simple a la más compleja, y recién ahí aplicas la <b>solución</b>. Empezar por lo simple (filtro, drenaje, energía) resuelve la mayoría de los casos sin complicarte.</p>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">4.2</span> "No enfría" o "enfría poco"</h3>
+        <ul>
+          <li>Filtros o serpentines sucios (lo más común)</li>
+          <li>Falta de gas por una fuga</li>
+          <li>Unidad exterior obstruida o con mala ventilación</li>
+          <li>Problema del compresor o del capacitor</li>
+          <li>Configuración incorrecta del control (modo, temperatura)</li>
+        </ul>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">4.3</span> "Gotea agua adentro"</h3>
+        <p>Casi siempre es <b>drenaje tapado</b> o mal instalado (sin caída). También puede ser exceso de hielo en el evaporador por filtro sucio o falta de gas, que al derretirse desborda la bandeja.</p>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">4.4</span> "Hace ruido o vibra"</h3>
+        <p>Revisa soportes flojos, aspas sucias o dañadas, tornillos sueltos o algún objeto rozando el ventilador. En la unidad exterior, un ruido fuerte y constante puede venir del compresor.</p>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">4.5</span> "No enciende o se apaga solo"</h3>
+        <ul>
+          <li>Revisa primero lo básico: energía, breaker, enchufe, control remoto con pilas.</li>
+          <li>Un <b>capacitor</b> dañado impide arrancar el compresor o el ventilador.</li>
+          <li>Protección por sobrecalentamiento (suciedad, mala ventilación).</li>
+          <li>Códigos de error en el display: consúltalos en el manual del equipo.</li>
+        </ul>
+        <div class="callout warn"><b>Atención:</b> medir y cambiar un capacitor implica trabajar con energía y componentes que almacenan carga. Hazlo solo con la energía cortada, descargando el capacitor, y si no tienes seguridad, deriva a alguien con experiencia.</div>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">4.6</span> Fugas de refrigerante y cuándo derivar</h3>
+        <p>Si el equipo pierde gas, busca la fuga (uniones, flares, serpentín) con detector o agua jabonosa, corrígela y recién ahí recarga. Recargar sin reparar es tirar dinero.</p>
+        <div class="callout note"><b>Criterio profesional:</b> saber <b>hasta dónde llegar</b> también es parte del oficio. Compresores quemados, placas electrónicas complejas o fallas que exigen equipo especializado: mejor derivar que arriesgar el equipo del cliente y tu reputación.</div>
+      </div>
+
+      <div class="videobox">
+        <div class="vb-label">▶ Material de apoyo</div>
+        <a class="vb-frame" href="https://www.youtube.com/watch?v=6YcIdJSB_tg" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/6YcIdJSB_tg/hqdefault.jpg" alt="Fallas comunes: por qué no enfría" loading="lazy"><span class="vb-play"><span class="pbtn"></span></span><span class="vb-cta">Ver en YouTube ▶</span></a>
+        <p class="vb-note"><b>Complementa</b> este módulo con este video sobre las causas más comunes de que un aire no enfríe. Recurso externo de apoyo, como complemento a este módulo.</p>
+      </div>
+
+      <div class="done-row"><button class="done-btn" onclick="toggleDone(4)"><span class="bx">✓</span> Marcar módulo como completado</button></div>
+    </div></div>
+  </div>
+
+  <!-- MÓDULO 5 -->
+  <div class="module" id="m5" data-mod="5">
+    <div class="module-head">
+      <div class="module-num">05</div>
+      <div class="module-head-txt"><div class="mtag">Herramientas y seguridad</div><h2>Herramientas y seguridad</h2><p>Con qué empezar y cómo trabajar sin accidentes.</p></div>
+      <div class="module-toggle">+</div>
+    </div>
+    <div class="module-body"><div class="module-inner">
+
+      <div class="lesson">
+        <h3><span class="lz">5.1</span> Kit esencial para empezar</h3>
+        <ul>
+          <li>Juego de manómetros (manifold)</li>
+          <li>Bomba de vacío</li>
+          <li>Abocardador (flaring), cortatubos y escariador</li>
+          <li>Multímetro</li>
+          <li>Taladro con brocas y sierra copa</li>
+          <li>Llaves, destornilladores, nivel y cinta métrica</li>
+          <li>Detector de fugas o agua jabonosa</li>
+        </ul>
+        <div class="callout tip"><b>No necesitas todo de una vez.</b> Empieza con lo básico para mantenimientos e instalaciones simples, y ve sumando herramientas con lo que ganes en los primeros trabajos.</div>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">5.2</span> Herramientas para crecer</h3>
+        <p>A medida que avances: báscula para carga de refrigerante, recuperadora de gas, herramientas de torque específicas, cámara/termómetro para diagnóstico y equipo para trabajos en altura. Invertir en buena herramienta se paga con trabajos más rápidos y limpios.</p>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">5.3</span> Seguridad eléctrica</h3>
+        <ul>
+          <li>Corta la energía en el breaker antes de cualquier intervención.</li>
+          <li>Verifica ausencia de tensión con el multímetro.</li>
+          <li>Descarga los capacitores antes de manipularlos.</li>
+          <li>No trabajes con las manos mojadas ni sobre superficies húmedas.</li>
+        </ul>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">5.4</span> Seguridad con refrigerante y medio ambiente</h3>
+        <ul>
+          <li><b>Nunca liberes refrigerante a la atmósfera:</b> daña el medio ambiente y en muchos países es ilegal. Usa recuperadora cuando corresponda.</li>
+          <li>Trabaja en lugares ventilados; el gas desplaza el oxígeno.</li>
+          <li>El sistema está presurizado: cuidado al abrir conexiones.</li>
+          <li>Usa guantes y gafas de protección al manipular gas y cobre.</li>
+        </ul>
+        <div class="callout warn"><b>Responsabilidad:</b> el manejo de refrigerantes está regulado. Infórmate sobre las normas de tu país y, para ciertas tareas, la certificación puede ser obligatoria.</div>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">5.5</span> EPP y buenas prácticas</h3>
+        <p>Guantes, gafas, calzado adecuado y, en altura, arnés. Mantén el área ordenada, prueba siempre el equipo antes de irte y deja todo limpio. La seguridad y la prolijidad son parte de lo que el cliente paga.</p>
+      </div>
+
+      <div class="videobox">
+        <div class="vb-label">▶ Material de apoyo</div>
+        <a class="vb-frame" href="https://www.youtube.com/watch?v=MIZNLulm1dE" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/MIZNLulm1dE/hqdefault.jpg" alt="Uso de bomba de vacío y manómetros" loading="lazy"><span class="vb-play"><span class="pbtn"></span></span><span class="vb-cta">Ver en YouTube ▶</span></a>
+        <p class="vb-note"><b>Complementa</b> este módulo viendo el uso real de la bomba de vacío y los manómetros. Recurso externo de apoyo, como complemento a este módulo.</p>
+      </div>
+
+      <div class="done-row"><button class="done-btn" onclick="toggleDone(5)"><span class="bx">✓</span> Marcar módulo como completado</button></div>
+    </div></div>
+  </div>
+
+  <!-- MÓDULO 6 -->
+  <div class="module" id="m6" data-mod="6">
+    <div class="module-head">
+      <div class="module-num">06</div>
+      <div class="module-head-txt"><div class="mtag">Ingreso</div><h2>Convierte el oficio en ingreso</h2><p>Cómo conseguir clientes y cobrar tu trabajo.</p></div>
+      <div class="module-toggle">+</div>
+    </div>
+    <div class="module-body"><div class="module-inner">
+
+      <div class="lesson">
+        <h3><span class="lz">6.1</span> Define tus servicios y tu alcance</h3>
+        <p>Empieza por lo que ya puedes hacer con seguridad: <b>mantenimiento preventivo</b>, <b>limpieza</b>, <b>diagnóstico</b> y, cuando tengas práctica, <b>instalación</b>. Sé claro con el cliente sobre qué haces y qué no; eso genera confianza y evita problemas.</p>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">6.2</span> Cómo poner precio</h3>
+        <p>Cobra por <b>tipo de servicio</b>: mantenimiento, instalación o reparación. Considera tu tiempo, el traslado, la dificultad y los materiales. Investiga cuánto cobran otros técnicos en tu zona para no quedar ni muy caro ni regalando tu trabajo.</p>
+        <div class="callout tip"><b>Consejo:</b> ten un precio base por visita. Así el cliente sabe desde el inicio que tu tiempo y desplazamiento tienen valor.</div>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">6.3</span> Cómo conseguir tus primeros clientes</h3>
+        <ul>
+          <li><b>Tu círculo cercano:</b> avisa a familia, vecinos y conocidos que ofreces el servicio.</li>
+          <li><b>WhatsApp:</b> un mensaje claro con lo que haces y una foto de un trabajo tuyo.</li>
+          <li><b>Redes locales:</b> grupos de tu barrio/ciudad, marketplace, publicaciones simples.</li>
+          <li><b>Boca a boca:</b> un trabajo bien hecho trae al siguiente cliente. Pide que te recomienden.</li>
+        </ul>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">6.4</span> Presupuestos y presentación profesional</h3>
+        <p>Manda presupuestos simples y claros: qué incluye, cuánto cuesta y cuándo lo haces. Preséntate limpio, puntual y explica lo que vas a hacer. La <b>Guía para Conseguir tus Primeros Clientes</b> (bono) trae modelos de mensaje y de presupuesto listos para usar.</p>
+      </div>
+
+      <div class="lesson">
+        <h3><span class="lz">6.5</span> Clientes recurrentes y crecimiento</h3>
+        <p>El mayor ingreso no está en un servicio suelto, sino en <b>clientes que vuelven</b>. Ofrece mantenimientos por temporada, mantén contacto y da buen trato. Con el tiempo, puedes sumar más equipos (comercios, oficinas) y hasta formar tu propia clientela estable.</p>
+        <div class="callout note"><b>El calor no descansa:</b> en zonas cálidas hay demanda todo el año. Un buen técnico, confiable y prolijo, casi nunca se queda sin trabajo.</div>
+      </div>
+
+      <div class="videobox">
+        <div class="vb-label">▶ Material de apoyo</div>
+        <a class="vb-frame" href="https://www.youtube.com/watch?v=segVdhu5PRY" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/segVdhu5PRY/hqdefault.jpg" alt="Cómo empezar y conseguir clientes" loading="lazy"><span class="vb-play"><span class="pbtn"></span></span><span class="vb-cta">Ver en YouTube ▶</span></a>
+        <p class="vb-note"><b>Complementa</b> este módulo con este video sobre cómo empezar en el oficio como emprendedor. Recurso externo de apoyo, como complemento a este módulo.</p>
+      </div>
+
+      <div class="done-row"><button class="done-btn" onclick="toggleDone(6)"><span class="bx">✓</span> Marcar módulo como completado</button></div>
+    </div></div>
+  </div>
+
+  <!-- BONOS -->
+  <div class="bonos-sec" id="bonos">
+    <h2>🎁 Tus 3 bonos</h2>
+    <p class="sub">Materiales complementarios en PDF para descargar. Úsalos como apoyo en tus servicios.</p>
+    <div class="bono-row">
+      <div class="bono-ic">🧰</div>
+      <div class="bt"><strong>Mapa de Herramientas del Principiante</strong><span>Qué comprar para empezar sin gastar de más.</span></div>
+      <a href="BONO_1_HERRAMIENTAS.pdf" class="bono-dl" download>Descargar</a>
+    </div>
+    <div class="bono-row">
+      <div class="bono-ic">📋</div>
+      <div class="bt"><strong>Checklist de Mantenimiento Preventivo</strong><span>Para no olvidar ningún punto en cada servicio.</span></div>
+      <a href="BONO_2_CHECKLIST.pdf" class="bono-dl" download>Descargar</a>
+    </div>
+    <div class="bono-row">
+      <div class="bono-ic">💬</div>
+      <div class="bt"><strong>Guía para Conseguir tus Primeros Clientes</strong><span>Modelos de mensaje, presupuesto y abordaje.</span></div>
+      <a href="BONO_3_CLIENTES.pdf" class="bono-dl" download>Descargar</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p><b>Técnico en Aires desde Cero</b> — Área del alumno</p>
+  <p>Contenido educativo e introductorio. No sustituye formación técnica formal ni certificaciones oficiales. Sigue siempre las normas de seguridad y la reglamentación de tu país. No hay promesa de ingresos garantizados.</p>
+</footer>
+
+<script>
+  // Accordion
+  document.querySelectorAll('.module-head').forEach(head => {
+    head.addEventListener('click', () => head.closest('.module').classList.toggle('open'));
+  });
+
+  // Progreso con localStorage (degrada sin error si no está disponible)
+  const KEY = 'tecnico_aires_progreso';
+  function loadDone(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+  function saveDone(o){ try { localStorage.setItem(KEY, JSON.stringify(o)); } catch(e){} }
+
+  function refreshProgress(){
+    const done = loadDone();
+    let count = 0;
+    document.querySelectorAll('.module').forEach(m => {
+      const id = m.dataset.mod;
+      if (done[id]) { m.classList.add('done'); count++; } else { m.classList.remove('done'); }
+    });
+    const pct = Math.round((count/6)*100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressTxt').textContent = count + ' / 6 módulos';
+  }
+  function toggleDone(n){
+    const done = loadDone();
+    done[n] = !done[n];
+    saveDone(done);
+    refreshProgress();
+  }
+  refreshProgress();
+</script>
+
+</body>
+</html>

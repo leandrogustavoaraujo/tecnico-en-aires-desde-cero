@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Técnico en Aires desde Cero — Curso Práctico de Refrigeración y Aire Acondicionado</title>
+<meta name="description" content="Aprende instalación, mantenimiento y diagnóstico de aire acondicionado con un curso práctico, directo y accesible.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #051014;
+    --bg-soft: #08181F;
+    --panel: #0B2028;
+    --panel-2: #0E2C36;
+    --line: rgba(130,230,255,.18);
+    --line-strong: rgba(130,230,255,.34);
+    --white: #FFFFFF;
+    --ice: #E6FBFF;
+    --text: #C5DDE3;
+    --muted: #8EAAB2;
+    --muted-2: #66828A;
+    --cyan: #52E5FF;
+    --cyan-2: #13BCE0;
+    --amber: #FFC857;
+    --orange: #FF8A3D;
+    --green: #75F0A3;
+    --danger: #FF5964;
+    --shadow: 0 28px 90px rgba(0,0,0,.42);
+    --radius-xl: 28px;
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --max: 1080px;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Manrope', system-ui, sans-serif;
+    background:
+      radial-gradient(circle at 50% -8%, rgba(82,229,255,.18), transparent 36rem),
+      linear-gradient(180deg, #07171D 0%, #020608 58%, #020608 100%);
+    color: var(--ice);
+    overflow-x: hidden;
+  }
+
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  .display { font-family: 'Archivo', system-ui, sans-serif; letter-spacing: -.045em; }
+  .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+  .center { text-align: center; }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--cyan);
+    background: rgba(82,229,255,.08);
+    border: 1px solid rgba(82,229,255,.24);
+    padding: 8px 15px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    color: var(--white);
+    font-size: clamp(30px, 4.6vw, 54px);
+    line-height: 1.02;
+    font-weight: 900;
+    max-width: 780px;
+    margin: 0 auto 16px;
+  }
+
+  .section-title .accent {
+    background: linear-gradient(135deg, var(--cyan), #F7FEFF 48%, var(--amber));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .section-desc {
+    color: var(--text);
+    font-size: clamp(15px, 1.8vw, 18px);
+    line-height: 1.65;
+    max-width: 680px;
+    margin: 0 auto 42px;
+  }
+
+  #urgency-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    text-align: center;
+    padding: 11px 16px;
+    color: #041014;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: .04em;
+    background: linear-gradient(90deg, #FF5964, #FFC857, #FFF4C2, #FFC857, #FF5964);
+    box-shadow: 0 10px 34px rgba(255,89,100,.18);
+  }
+
+  #hero {
+    text-align: center;
+    padding: 66px 0 64px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(circle at 22% 8%, rgba(255,200,87,.10), transparent 24rem),
+      radial-gradient(circle at 78% 4%, rgba(82,229,255,.14), transparent 28rem);
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--cyan);
+    background: rgba(82,229,255,.08);
+    border: 1px solid rgba(82,229,255,.28);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .product-lockup {
+    display: inline-block;
+    color: var(--amber);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .hero-headline {
+    font-size: clamp(38px, 7.4vw, 78px);
+    line-height: .96;
+    font-weight: 900;
+    color: var(--white);
+    max-width: 890px;
+    margin: 0 auto 22px;
+  }
+
+  .hero-headline em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--cyan), var(--white) 48%, var(--amber));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-sub {
+    color: #BED5DB;
+    font-size: clamp(16px, 2vw, 20px);
+    line-height: 1.68;
+    max-width: 720px;
+    margin: 0 auto 34px;
+  }
+
+  .hero-sub strong { color: var(--white); }
+
+  .hero-hook {
+    color: #BED5DB;
+    font-size: clamp(17px, 2.1vw, 22px);
+    line-height: 1.58;
+    max-width: 760px;
+    margin: -6px auto 18px;
+  }
+
+  .hero-hook strong { color: var(--white); }
+
+  .hero-countdown {
+    width: min(430px, 100%);
+    margin: 0 auto 28px;
+    padding: 14px;
+    border-radius: 18px;
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,200,87,.22);
+    box-shadow: 0 18px 48px rgba(0,0,0,.20);
+  }
+
+  .hero-countdown-label {
+    color: var(--amber);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .hero-countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .hero-countdown-block {
+    border-radius: 12px;
+    padding: 11px 8px 9px;
+    background: rgba(3,14,18,.72);
+    border: 1px solid rgba(255,255,255,.10);
+  }
+
+  .hero-countdown-num {
+    display: block;
+    color: var(--white);
+    font-family: 'Archivo', system-ui, sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    line-height: .95;
+    letter-spacing: -.04em;
+  }
+
+  .hero-countdown-text {
+    display: block;
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .hero-img-wrap {
+    width: min(720px, 100%);
+    margin: 0 auto 30px;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(130,230,255,.24);
+    background: #07171D;
+    box-shadow: var(--shadow), 0 0 70px rgba(82,229,255,.12);
+  }
+
+  .hero-img-wrap img { width: 100%; height: auto; }
+
+  .btn-main {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 56px;
+    border-radius: 12px;
+    padding: 17px 34px;
+    color: #041014;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 16px;
+    background: linear-gradient(135deg, #E8FDFF, var(--cyan) 42%, var(--amber));
+    box-shadow: 0 16px 42px rgba(82,229,255,.24);
+    transition: transform .16s ease, box-shadow .16s ease;
+  }
+
+  .btn-main:hover { transform: translateY(-2px); box-shadow: 0 22px 52px rgba(82,229,255,.35); }
+
+  .btn-meta {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.45;
+    margin-top: 12px;
+  }
+
+  .trust-row {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+
+  .trust-pill {
+    color: var(--text);
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.11);
+    border-radius: 999px;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  section.content-section { padding: 84px 0; }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+    max-width: 980px;
+    margin: 0 auto 40px;
+  }
+
+  .card {
+    text-align: left;
+    background: linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.025));
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: var(--radius-lg);
+    padding: 26px;
+    box-shadow: 0 18px 50px rgba(0,0,0,.20);
+  }
+
+  .card-icon,
+  .number-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    color: #041014;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--cyan), var(--amber));
+    margin-bottom: 18px;
+  }
+
+  .number-icon {
+    width: 54px;
+    height: 54px;
+    font-family: 'Archivo', system-ui, sans-serif;
+    font-size: 22px;
+    letter-spacing: -.04em;
+  }
+
+  .card-title {
+    color: var(--white);
+    font-family: 'Archivo', system-ui, sans-serif;
+    font-size: 19px;
+    line-height: 1.14;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  .card-body {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.62;
+  }
+
+  #why-works, #bonuses, #guarantee {
+    background: rgba(255,255,255,.025);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+
+  .gallery-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 210px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.13);
+    background: #07171D;
+    box-shadow: 0 18px 50px rgba(0,0,0,.23);
+  }
+
+  .gallery-card img { width: 100%; height: 100%; min-height: 210px; object-fit: cover; }
+  .gallery-card::after {
+    content: attr(data-label);
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    color: var(--white);
+    font-weight: 900;
+    font-size: 13px;
+    text-shadow: 0 2px 16px rgba(0,0,0,.75);
+  }
+
+  .moving-gallery-wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 24px;
+    border: 1px solid rgba(130,230,255,.13);
+    background: rgba(255,255,255,.025);
+    mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  }
+
+  .moving-gallery-track {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+    padding: 18px 0;
+    animation: galleryMarquee 30s linear infinite;
+  }
+
+  .moving-gallery-wrap:hover .moving-gallery-track { animation-play-state: paused; }
+
+  .moving-gallery-card {
+    position: relative;
+    flex: 0 0 300px;
+    height: 178px;
+    overflow: hidden;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.13);
+    background: #07171D;
+    box-shadow: 0 18px 48px rgba(0,0,0,.22);
+  }
+
+  .moving-gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .moving-gallery-card::after {
+    content: attr(data-label);
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    color: var(--white);
+    font-weight: 900;
+    font-size: 13px;
+    text-shadow: 0 2px 16px rgba(0,0,0,.78);
+  }
+
+  @keyframes galleryMarquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .bonus-list {
+    display: grid;
+    gap: 18px;
+    max-width: 820px;
+    margin: 0 auto 34px;
+  }
+
+  .bonus-item {
+    display: grid;
+    grid-template-columns: 52px 92px 1fr;
+    gap: 18px;
+    align-items: center;
+    text-align: left;
+    background: rgba(3,14,18,.72);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 20px;
+    padding: 20px;
+  }
+
+  .bonus-number {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #041014;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--cyan), var(--amber));
+  }
+
+  .bonus-cover {
+    width: 92px;
+    height: 92px;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid rgba(130,230,255,.22);
+    background: #07171D;
+  }
+
+  .bonus-cover img { width: 100%; height: 100%; object-fit: cover; }
+  .bonus-title { color: var(--white); font-family: 'Archivo'; font-weight: 800; font-size: 18px; line-height: 1.16; margin-bottom: 7px; }
+  .bonus-desc { color: var(--muted); font-size: 14px; line-height: 1.55; }
+  .bonus-price { color: var(--muted-2); font-size: 13px; margin-top: 8px; }
+  .bonus-price strong { color: var(--amber); }
+
+  #purchase {
+    padding: 88px 0;
+    text-align: center;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(82,229,255,.14), transparent 28rem),
+      #020608;
+  }
+
+  .countdown-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 24px auto 34px;
+  }
+
+  .countdown-block {
+    min-width: 82px;
+    background: var(--panel);
+    border: 1px solid rgba(255,200,87,.24);
+    border-radius: 14px;
+    padding: 16px 12px 13px;
+  }
+
+  .countdown-num {
+    display: block;
+    color: var(--white);
+    font-family: 'Archivo', system-ui, sans-serif;
+    font-size: 38px;
+    font-weight: 900;
+    line-height: .92;
+    letter-spacing: -.04em;
+  }
+
+  .countdown-text {
+    display: block;
+    color: var(--amber);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-top: 7px;
+  }
+
+  .price-box {
+    max-width: 500px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025));
+    border: 1.5px solid rgba(130,230,255,.28);
+    border-radius: 26px;
+    padding: 34px;
+    box-shadow: var(--shadow), 0 0 70px rgba(82,229,255,.08);
+  }
+
+  .price-old { color: var(--muted-2); text-decoration: line-through; font-size: 18px; margin-bottom: 8px; }
+  .price-new {
+    color: var(--white);
+    font-family: 'Archivo', system-ui, sans-serif;
+    font-size: clamp(64px, 14vw, 112px);
+    font-weight: 900;
+    line-height: .86;
+    letter-spacing: -.075em;
+    margin-bottom: 10px;
+  }
+  .price-new span { color: var(--cyan); font-size: .44em; letter-spacing: -.04em; margin-right: 4px; }
+  .price-note { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+
+  .checklist {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+    text-align: left;
+    margin-bottom: 26px;
+  }
+
+  .checklist li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.45;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .checklist li:last-child { border-bottom: none; padding-bottom: 0; }
+  .check-icon { color: var(--green); font-weight: 900; flex: 0 0 auto; }
+  .purchase-meta { color: var(--muted); font-size: 13px; line-height: 1.45; margin-top: 12px; }
+
+  #social-proof { padding: 84px 0; text-align: center; }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+    max-width: 940px;
+    margin: 0 auto 34px;
+  }
+
+  .review-card {
+    text-align: left;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.11);
+    border-radius: 20px;
+    padding: 22px;
+  }
+
+  .review-top { display: flex; align-items: center; gap: 13px; margin-bottom: 14px; }
+  .avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex: 0 0 auto;
+    border: 2px solid rgba(82,229,255,.30);
+    background: #07171D;
+  }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .review-name { color: var(--white); font-weight: 900; font-size: 15px; }
+  .review-city { color: var(--muted-2); font-size: 12px; margin-top: 2px; }
+  .stars { color: var(--amber); letter-spacing: 2px; font-size: 14px; margin-bottom: 10px; }
+  .review-text { color: var(--muted); font-size: 14px; line-height: 1.62; font-style: italic; }
+
+  .guarantee-box {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+    background: rgba(3,14,18,.74);
+    border: 1px dashed rgba(117,240,163,.35);
+    border-radius: 24px;
+    padding: 38px;
+  }
+  .guarantee-icon { font-size: 46px; margin-bottom: 14px; }
+  .guarantee-title { color: var(--white); font-family: 'Archivo'; font-size: clamp(26px, 4vw, 40px); line-height: 1.02; margin-bottom: 14px; }
+  .guarantee-text { color: var(--muted); line-height: 1.66; font-size: 15px; }
+
+  #faq { padding: 84px 0; text-align: center; }
+  .faq-list { max-width: 740px; margin: 0 auto 34px; display: grid; gap: 12px; }
+  .faq-item { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.11); border-radius: 16px; overflow: hidden; }
+  .faq-question {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    color: var(--white);
+    font: inherit;
+    font-weight: 900;
+    text-align: left;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+  }
+  .faq-arrow { width: 26px; height: 26px; border-radius: 50%; background: rgba(82,229,255,.14); color: var(--cyan); display: grid; place-items: center; flex: 0 0 auto; transition: transform .2s ease; }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height .28s ease; }
+  .faq-answer-inner { color: var(--muted); line-height: 1.62; font-size: 14px; text-align: left; padding: 0 20px 20px; }
+  .faq-item.open .faq-answer { max-height: 240px; }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+  footer {
+    background: #010405;
+    color: var(--muted-2);
+    text-align: center;
+    padding: 28px 18px;
+    font-size: 12px;
+    line-height: 1.6;
+    border-top: 1px solid rgba(255,255,255,.08);
+  }
+
+  @media (max-width: 680px) {
+    .container { width: min(100% - 28px, var(--max)); }
+    #urgency-bar { font-size: 12px; padding: 10px 12px; }
+    #hero { padding: 46px 0 54px; }
+    .hero-headline { font-size: clamp(36px, 12vw, 54px); }
+    .hero-img-wrap { border-radius: 18px; margin-bottom: 24px; }
+    .btn-main { width: 100%; padding-left: 18px; padding-right: 18px; }
+    .trust-row { gap: 9px; margin-top: 24px; }
+    .trust-pill { width: 100%; border-radius: 14px; }
+    section.content-section, #social-proof, #faq { padding: 66px 0; }
+    #purchase { padding: 68px 0; }
+    .cards-grid { grid-template-columns: 1fr; gap: 14px; margin-bottom: 30px; }
+    .card { padding: 22px; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-card, .gallery-card img { min-height: 190px; }
+    .moving-gallery-wrap { border-radius: 18px; }
+    .moving-gallery-track { gap: 12px; animation-duration: 24s; }
+    .moving-gallery-card { flex-basis: 245px; height: 148px; border-radius: 16px; }
+    .hero-countdown { margin-bottom: 24px; }
+    .hero-countdown-num { font-size: 24px; }
+    .bonus-item { grid-template-columns: 42px 1fr; gap: 14px; align-items: start; padding: 18px; }
+    .bonus-cover { grid-column: 1 / -1; width: 100%; height: auto; aspect-ratio: 16 / 9; order: -1; }
+    .bonus-number { width: 38px; height: 38px; }
+    .countdown-wrap { gap: 7px; }
+    .countdown-block { min-width: 0; flex: 1; padding: 14px 6px 12px; }
+    .countdown-num { font-size: 30px; }
+    .price-box { padding: 26px 20px; border-radius: 22px; }
+    .price-new { font-size: 74px; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .guarantee-box { padding: 28px 22px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+  <div id="urgency-bar">OFERTA DE LANZAMIENTO · Solo hoy, <span id="urgency-date"></span> · Acceso inmediato</div>
+
+  <section id="hero">
+    <div class="container">
+      <div class="hero-eyebrow">Curso práctico · Refrigeración y aire acondicionado</div>
+      <h1 class="hero-headline display">Técnico en <em>Aires</em> desde Cero</h1>
+      <p class="hero-hook"><strong>Aprende a instalar y reparar aires acondicionados</strong> de forma directa, visual y práctica, incluso si estás empezando desde cero.</p>
+      <p class="hero-sub">Un entrenamiento introductorio para entender mantenimiento, diagnóstico, herramientas y primeros servicios — el tipo de trabajo por el que muchos técnicos cobran entre $50 y $100 por visita.</p>
+
+      <div class="hero-countdown" aria-label="Contador de oferta">
+        <div class="hero-countdown-label">Oferta de lanzamiento termina en</div>
+        <div class="hero-countdown-grid">
+          <div class="hero-countdown-block"><span class="hero-countdown-num" id="hero-cd-hours">00</span><span class="hero-countdown-text">Horas</span></div>
+          <div class="hero-countdown-block"><span class="hero-countdown-num" id="hero-cd-mins">00</span><span class="hero-countdown-text">Min</span></div>
+          <div class="hero-countdown-block"><span class="hero-countdown-num" id="hero-cd-secs">00</span><span class="hero-countdown-text">Seg</span></div>
+        </div>
+      </div>
+
+      <div class="hero-img-wrap">
+        <img src="HERO_AIRES.webp" alt="Mockup del curso Técnico en Aires desde Cero">
+      </div>
+
+      <a href="#purchase" class="btn-main">Quiero empezar ahora</a>
+      <p class="btn-meta">Acceso inmediato · Pago único · Garantía de 7 días</p>
+
+      <div class="trust-row">
+        <div class="trust-pill">Curso introductorio y práctico</div>
+        <div class="trust-pill">3 bonos incluidos</div>
+        <div class="trust-pill">Explicación clara y directa</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="what-you-get" class="content-section">
+    <div class="container center">
+      <span class="section-label">Lo que recibes</span>
+      <h2 class="section-title display">Una guía práctica para entender el oficio por dentro.</h2>
+      <p class="section-desc">El material está estructurado para quien quiere empezar desde cero, entender herramientas, conocer sistemas comunes y saber qué problemas aparecen en instalaciones y mantenimientos. Es un oficio con el que puedes trabajar de forma independiente, sin patrón y sin horario fijo.</p>
+
+      <div class="cards-grid">
+        <div class="card"><div class="card-icon">01</div><p class="card-title">Instalación de minisplit</p><p class="card-body">Entiende qué pasa en una instalación residencial, qué cuidados importan y qué etapas no se pueden ignorar.</p></div>
+        <div class="card"><div class="card-icon">02</div><p class="card-title">Mantenimiento preventivo</p><p class="card-body">Aprende la lógica de limpieza, inspección, filtros, serpentín, drenaje, ruidos y caída de rendimiento.</p></div>
+        <div class="card"><div class="card-icon">03</div><p class="card-title">Diagnóstico de fallas</p><p class="card-body">No enfría, gotea agua, hace ruido, se apaga, mal olor o consumo alto: aprende a investigar el origen.</p></div>
+        <div class="card"><div class="card-icon">04</div><p class="card-title">Primeros clientes</p><p class="card-body">Cómo poner precio con criterio, armar una oferta simple, presentarte y conseguir tus primeros servicios.</p></div>
+      </div>
+
+      <a href="#purchase" class="btn-main">Quiero acceder al curso</a>
+      <p class="btn-meta">Compra segura · Solo $27</p>
+    </div>
+  </section>
+
+  <section id="why-works" class="content-section">
+    <div class="container center">
+      <span class="section-label">Por qué funciona</span>
+      <h2 class="section-title display">Aprendes primero lo que genera servicio real.</h2>
+      <p class="section-desc">El enfoque es directo: entender el sistema, ver el procedimiento y transformar ese conocimiento en una oferta clara de servicio. La demanda de buenos técnicos supera la oferta en muchas ciudades, y como el calor no descansa, hay trabajo durante todo el año — no es un oficio de temporada.</p>
+
+      <div class="cards-grid">
+        <div class="card"><div class="number-icon">01</div><p class="card-title">Visualiza el sistema</p><p class="card-body">Entiende evaporadora, condensadora, tuberías, drenaje, eléctrica básica y la función de cada componente.</p></div>
+        <div class="card"><div class="number-icon">02</div><p class="card-title">Aprende el procedimiento</p><p class="card-body">Mira los pasos de instalación, mantenimiento y diagnóstico en orden lógico, sin relleno y sin complicar el inicio.</p></div>
+        <div class="card"><div class="number-icon">03</div><p class="card-title">Conviértelo en oferta</p><p class="card-body">Usa el conocimiento para ofrecer servicios iniciales con alcance claro, precio responsable y comunicación profesional. Con un solo servicio realizado, el curso ya se paga solo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="content-section">
+    <div class="container center">
+      <span class="section-label">Práctica visual</span>
+      <h2 class="section-title display">El día a día del técnico explicado de forma simple.</h2>
+      <p class="section-desc">Mantenimiento, herramientas, instalación, atención al cliente y organización del servicio en una página más leve, rápida y adaptada a mobile.</p>
+
+      <div class="moving-gallery-wrap" aria-label="Galería animada de técnicos en refrigeración">
+        <div class="moving-gallery-track">
+        <div class="moving-gallery-card" data-label="Mantenimiento de split"><img src="AIRES_1.webp" alt="Técnico haciendo mantenimiento de aire acondicionado split" loading="lazy"></div>
+        <div class="moving-gallery-card" data-label="Diagnóstico con manómetros"><img src="AIRES_2.webp" alt="Diagnóstico con manómetros" loading="lazy"></div>
+        <div class="moving-gallery-card" data-label="Instalación de condensadora"><img src="AIRES_3.webp" alt="Instalación de unidad condensadora" loading="lazy"></div>
+        <div class="moving-gallery-card" data-label="Instalación residencial"><img src="AIRES_4.webp" alt="Instalación residencial de aire acondicionado" loading="lazy"></div>
+        <div class="moving-gallery-card" data-label="Atención al cliente"><img src="AIRES_5.webp" alt="Técnico atendiendo cliente con tablet" loading="lazy"></div>
+        <div class="moving-gallery-card" data-label="Mantenimiento de split"><img src="AIRES_1.webp" alt="Técnico haciendo mantenimiento de aire acondicionado split" loading="lazy"></div>
+        <div class="moving-gallery-card" data-label="Diagnóstico con manómetros"><img src="AIRES_2.webp" alt="Diagnóstico con manómetros" loading="lazy"></div>
+        <div class="moving-gallery-card" data-label="Instalación de condensadora"><img src="AIRES_3.webp" alt="Instalación de unidad condensadora" loading="lazy"></div>
+        <div class="moving-gallery-card" data-label="Instalación residencial"><img src="AIRES_4.webp" alt="Instalación residencial de aire acondicionado" loading="lazy"></div>
+        <div class="moving-gallery-card" data-label="Atención al cliente"><img src="AIRES_5.webp" alt="Técnico atendiendo cliente con tablet" loading="lazy"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="bonuses" class="content-section">
+    <div class="container center">
+      <span class="section-label">Bonos incluidos</span>
+      <h2 class="section-title display">Recibe 3 bonos para acelerar la práctica.</h2>
+      <p class="section-desc">Materiales complementarios para ver el oficio como técnico y también como una oportunidad de ingreso real: no como un pasatiempo, sino como un servicio por el que la gente paga.</p>
+
+      <div class="bonus-list">
+        <div class="bonus-item">
+          <div class="bonus-number">1</div>
+          <div class="bonus-cover"><img src="BONUS_1_AIRES.webp" alt="Bono Mapa de Herramientas" loading="lazy"></div>
+          <div class="bonus-info"><p class="bonus-title">Mapa de Herramientas del Principiante</p><p class="bonus-desc">Lista organizada de qué conocer, para qué sirve cada cosa y cómo evitar comprar la herramienta equivocada al inicio.</p><p class="bonus-price"><s>$12</s> <strong>Hoy incluido</strong></p></div>
+        </div>
+        <div class="bonus-item">
+          <div class="bonus-number">2</div>
+          <div class="bonus-cover"><img src="BONUS_2_AIRES.webp" alt="Bono Checklist de Mantenimiento" loading="lazy"></div>
+          <div class="bonus-info"><p class="bonus-title">Checklist de Mantenimiento Preventivo</p><p class="bonus-desc">Una guía para no olvidar puntos importantes en inspecciones, limpieza, drenaje, ruidos y prueba de funcionamiento.</p><p class="bonus-price"><s>$9</s> <strong>Hoy incluido</strong></p></div>
+        </div>
+        <div class="bonus-item">
+          <div class="bonus-number">3</div>
+          <div class="bonus-cover"><img src="BONUS_3_AIRES.webp" alt="Bono Primeros Clientes" loading="lazy"></div>
+          <div class="bonus-info"><p class="bonus-title">Guía para Conseguir tus Primeros Clientes</p><p class="bonus-desc">Modelos de mensaje, abordaje local e ideas de oferta para empezar vendiendo mantenimiento y servicios simples.</p><p class="bonus-price"><s>$14</s> <strong>Hoy incluido</strong></p></div>
+        </div>
+      </div>
+
+      <a href="#purchase" class="btn-main">Asegurar la oferta de hoy</a>
+    </div>
+  </section>
+
+  <section id="purchase">
+    <div class="container center">
+      <span class="section-label">Oferta limitada</span>
+      <h2 class="section-title display">El precio de lanzamiento termina en:</h2>
+
+      <div class="countdown-wrap" aria-label="Contador de oferta">
+        <div class="countdown-block"><span class="countdown-num" id="cd-hours">00</span><span class="countdown-text">Horas</span></div>
+        <div class="countdown-block"><span class="countdown-num" id="cd-mins">00</span><span class="countdown-text">Min</span></div>
+        <div class="countdown-block"><span class="countdown-num" id="cd-secs">00</span><span class="countdown-text">Seg</span></div>
+      </div>
+
+      <div class="price-box">
+        <p class="price-old">De $47 USD</p>
+        <p class="price-new display"><span>$</span>27</p>
+        <p class="price-note">USD · pago único · acceso inmediato</p>
+        <p class="price-note" style="color:var(--green,#75F0A3);font-weight:700;">Menos de lo que cobra un técnico por una sola visita. Con tu primer servicio, ya lo recuperas.</p>
+        <ul class="checklist">
+          <li><span class="check-icon">✓</span> Curso práctico Técnico en Aires desde Cero</li>
+          <li><span class="check-icon">✓</span> Instalación, mantenimiento y diagnóstico</li>
+          <li><span class="check-icon">✓</span> Seguridad básica y cuidados esenciales</li>
+          <li><span class="check-icon">✓</span> Bono 1: Mapa de herramientas</li>
+          <li><span class="check-icon">✓</span> Bono 2: Checklist de mantenimiento</li>
+          <li><span class="check-icon">✓</span> Bono 3: Primeros clientes</li>
+          <li><span class="check-icon">✓</span> Garantía incondicional de 7 días</li>
+        </ul>
+        <a href="LINK_CHECKOUT_AQUI" class="btn-main js-checkout" style="width:100%;">Asegurar mi acceso por $27</a>
+        <p class="purchase-meta">🔒 Compra segura · Garantía de 7 días</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="social-proof">
+    <div class="container center">
+      <span class="section-label">Experiencias de alumnos</span>
+      <h2 class="section-title display">Opiniones de quienes ya empezaron.</h2>
+      <p class="section-desc">Experiencias presentadas de forma directa, con foto, nombre y relato del alumno.</p>
+
+      <div class="reviews-grid">
+        <div class="review-card"><div class="review-top"><div class="avatar"><img src="FT_1_AIRES.webp" alt="Miguel H." loading="lazy"></div><div><p class="review-name">Miguel H.</p><p class="review-city">Ciudad de México</p></div></div><div class="stars">★★★★★</div><p class="review-text">“Empecé sin saber nada. El material organiza lo básico y me mostró que el mantenimiento preventivo puede ser la puerta de entrada para atender clientes.”</p></div>
+        <div class="review-card"><div class="review-top"><div class="avatar"><img src="FT_2_AIRES.webp" alt="Carlos R." loading="lazy"></div><div><p class="review-name">Carlos R.</p><p class="review-city">Medellín</p></div></div><div class="stars">★★★★★</div><p class="review-text">“Me gustó porque no empieza con pura teoría difícil. Se entiende el sistema, las herramientas y qué observar antes de meter mano.”</p></div>
+        <div class="review-card"><div class="review-top"><div class="avatar"><img src="FT_3_AIRES.webp" alt="José Q." loading="lazy"></div><div><p class="review-name">José Q.</p><p class="review-city">Lima</p></div></div><div class="stars">★★★★★</div><p class="review-text">“Lo mejor es que el contenido va directo al punto. En pocas semanas ya estaba ofreciendo servicios de mantenimiento en mi zona.”</p></div>
+      </div>
+
+      <a href="#purchase" class="btn-main">Quiero empezar ahora</a>
+      <p class="btn-meta">Compra segura · Solo $27</p>
+    </div>
+  </section>
+
+  <section id="guarantee" class="content-section">
+    <div class="container">
+      <div class="guarantee-box">
+        <div class="guarantee-icon">🛡️</div>
+        <h2 class="guarantee-title display">Garantía incondicional de 7 días</h2>
+        <p class="guarantee-text">Puedes acceder al contenido, evaluar el material y decidir con calma. Si no es para ti, solicita el reembolso dentro del plazo de garantía.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container center">
+      <span class="section-label">Preguntas frecuentes</span>
+      <h2 class="section-title display">Antes de comprar, mira esto.</h2>
+
+      <div class="faq-list">
+        <div class="faq-item open"><button class="faq-question" type="button">¿Necesito experiencia previa?<span class="faq-arrow">⌄</span></button><div class="faq-answer"><div class="faq-answer-inner">No. El contenido está pensado para principiantes. Presenta la lógica de los sistemas, herramientas y procedimientos básicos.</div></div></div>
+        <div class="faq-item"><button class="faq-question" type="button">¿Voy a salir técnico certificado?<span class="faq-arrow">⌄</span></button><div class="faq-answer"><div class="faq-answer-inner">No. Este es un curso práctico introductorio. No sustituye formación técnica formal, certificaciones, normas de seguridad ni habilitaciones exigidas para ciertas actividades.</div></div></div>
+        <div class="faq-item"><button class="faq-question" type="button">¿Puedo recuperar lo que invertí?<span class="faq-arrow">⌄</span></button><div class="faq-answer"><div class="faq-answer-inner">Una sola visita de instalación o mantenimiento suele cobrarse entre $50 y $100, así que el curso puede pagarse con tu primer servicio. Aun así, no existe garantía de ingresos: el resultado depende de tu práctica, tu ciudad, la demanda, la calidad de tu servicio y tu capacidad de conseguir clientes.</div></div></div>
+        <div class="faq-item"><button class="faq-question" type="button">¿Cómo recibo el acceso?<span class="faq-arrow">⌄</span></button><div class="faq-answer"><div class="faq-answer-inner">Después de la compra, el acceso se envía automáticamente al correo que indicaste en el checkout.</div></div></div>
+        <div class="faq-item"><button class="faq-question" type="button">¿Sirve en mi país?<span class="faq-arrow">⌄</span></button><div class="faq-answer"><div class="faq-answer-inner">Sí. La lógica de instalación, mantenimiento y diagnóstico se aplica en toda América. Lo que cambia es precio, demanda, competencia local y normas específicas.</div></div></div>
+      </div>
+
+      <a href="#purchase" class="btn-main">Quiero mi acceso por $27</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Técnico en Aires desde Cero. Todos los derechos reservados.</p>
+    <p>Este producto tiene finalidad educativa. No hay promesa de empleo, certificación profesional, ingresos garantizados ni autorización para ejecutar servicios sin cumplir normas técnicas y medidas de seguridad.</p>
+  </footer>
+
+<script>
+  const esDays = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  const esMonths = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  const now = new Date();
+  const urgencyDate = document.getElementById('urgency-date');
+  if (urgencyDate) urgencyDate.textContent = esDays[now.getDay()] + ', ' + now.getDate() + ' de ' + esMonths[now.getMonth()];
+
+  function updateCountdown() {
+    const current = new Date();
+    const end = new Date();
+    end.setHours(23, 59, 59, 999);
+    let diff = Math.max(0, Math.floor((end - current) / 1000));
+    const h = Math.floor(diff / 3600); diff %= 3600;
+    const m = Math.floor(diff / 60);
+    const s = diff % 60;
+    const hh = String(h).padStart(2, '0');
+    const mm = String(m).padStart(2, '0');
+    const ss = String(s).padStart(2, '0');
+    ['cd-hours', 'hero-cd-hours'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = hh; });
+    ['cd-mins', 'hero-cd-mins'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = mm; });
+    ['cd-secs', 'hero-cd-secs'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = ss; });
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  document.querySelectorAll('.js-checkout').forEach(link => {
+    link.addEventListener('click', () => {
+      if (typeof fbq === 'function') fbq('track', 'InitiateCheckout');
+    });
+  });
+</script>
+</body>
+</html>
