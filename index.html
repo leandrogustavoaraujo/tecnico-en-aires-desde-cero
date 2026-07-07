@@ -113,7 +113,7 @@
     margin-bottom: 14px;
   }
 
-  #hero { padding: 56px 0 70px; text-align: center; }
+  #hero { padding: 24px 0 70px; text-align: center; }
 
   .hero-headline {
     color: var(--heading);
@@ -217,6 +217,7 @@
   }
 
   section.content-section { padding: 84px 0; }
+  #bonuses { padding-top: 30px; }
 
   .cards-grid {
     display: grid;
@@ -537,13 +538,14 @@
   @media (max-width: 680px) {
     .container { width: min(100% - 28px, var(--max)); }
     #urgency-bar { font-size: 12px; padding: 10px 12px; }
-    #hero { padding: 46px 0 54px; }
+    #hero { padding: 18px 0 54px; }
     .hero-headline { font-size: clamp(30px, 8vw, 44px); }
     .hero-img-wrap { border-radius: 18px; margin-bottom: 24px; }
     .btn-main { width: 100%; padding-left: 18px; padding-right: 18px; }
     .trust-row { gap: 9px; margin-top: 24px; }
     .trust-pill { width: 100%; border-radius: 14px; }
     section.content-section, #social-proof, #faq { padding: 66px 0; }
+    #bonuses { padding-top: 24px; }
     #purchase { padding: 68px 0; }
     .cards-grid { grid-template-columns: 1fr; gap: 14px; margin-bottom: 30px; }
     .card { padding: 22px; }
@@ -589,7 +591,6 @@ src="https://www.facebook.com/tr?id=989728143663966&ev=PageView&noscript=1"
   <section id="hero">
     <div class="container">
       <div class="hero-badge">Curso práctico · Refrigeración y aire acondicionado</div>
-      <p class="product-lockup">Técnico en Aires desde Cero</p>
       <h1 class="hero-headline display">Aprende la profesión de <em>Técnico en Aire Acondicionado</em> de Cero a Avanzado</h1>
       <p class="hero-sub">Aprende a instalar, mantener y reparar aires acondicionados de forma práctica — el mismo trabajo por el que un técnico cobra entre <strong style="color:var(--blue);">$50 y $100</strong> por visita.</p>
 
@@ -598,13 +599,6 @@ src="https://www.facebook.com/tr?id=989728143663966&ev=PageView&noscript=1"
       </div>
 
       <a href="#purchase" class="btn-main btn-hero-main">Asegurar mi acceso</a>
-      <p class="btn-meta">Acceso inmediato · Pago único · Garantía de 7 días</p>
-
-      <div class="trust-row">
-        <div class="trust-pill">Curso introductorio y práctico</div>
-        <div class="trust-pill">3 bonos incluidos</div>
-        <div class="trust-pill">Explicación clara y directa</div>
-      </div>
     </div>
   </section>
 
@@ -613,38 +607,6 @@ src="https://www.facebook.com/tr?id=989728143663966&ev=PageView&noscript=1"
       <span class="section-label">Lo que recibes</span>
       <h2 class="section-title display">Una guía práctica para entender el oficio por dentro.</h2>
       <p class="section-desc">Contenido pensado para quien empieza de cero: entiende las herramientas, los sistemas más comunes y los problemas reales de instalación y mantenimiento.</p>
-
-      <div class="cards-grid">
-        <div class="card"><div class="card-icon">01</div><p class="card-title">Instalación de minisplit</p><p class="card-body">Entiende qué pasa en una instalación residencial, qué cuidados importan y qué etapas no se pueden ignorar.</p></div>
-        <div class="card"><div class="card-icon">02</div><p class="card-title">Mantenimiento preventivo</p><p class="card-body">Aprende la lógica de limpieza, inspección, filtros, serpentín, drenaje, ruidos y caída de rendimiento.</p></div>
-        <div class="card"><div class="card-icon">03</div><p class="card-title">Diagnóstico de fallas</p><p class="card-body">No enfría, gotea agua, hace ruido, se apaga, mal olor o consumo alto: aprende a investigar el origen.</p></div>
-        <div class="card"><div class="card-icon">04</div><p class="card-title">Primeros clientes</p><p class="card-body">Cómo poner precio con criterio, armar una oferta simple, presentarte y conseguir tus primeros servicios.</p></div>
-      </div>
-
-      <a href="#purchase" class="btn-main">Quiero acceder al curso</a>
-      <p class="btn-meta">Compra segura · Solo $9.90</p>
-    </div>
-  </section>
-
-  <section id="why-works" class="content-section">
-    <div class="container center">
-      <span class="section-label">Por qué funciona</span>
-      <h2 class="section-title display">Aprendes primero lo que genera servicio real.</h2>
-      <p class="section-desc">El enfoque es directo: entender el sistema, ver el procedimiento y transformar ese conocimiento en un servicio real. La demanda de buenos técnicos supera la oferta en muchas ciudades.</p>
-
-      <div class="cards-grid">
-        <div class="card"><div class="number-icon">01</div><p class="card-title">Visualiza el sistema</p><p class="card-body">Entiende evaporadora, condensadora, tuberías, drenaje, eléctrica básica y la función de cada componente.</p></div>
-        <div class="card"><div class="number-icon">02</div><p class="card-title">Aprende el procedimiento</p><p class="card-body">Mira los pasos de instalación, mantenimiento y diagnóstico en orden lógico, sin relleno y sin complicar el inicio.</p></div>
-        <div class="card"><div class="number-icon">03</div><p class="card-title">Conviértelo en oferta</p><p class="card-body">Usa el conocimiento para ofrecer servicios iniciales con alcance claro, precio responsable y comunicación profesional. Con un solo servicio realizado, el curso ya se paga solo.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="gallery" class="content-section">
-    <div class="container center">
-      <span class="section-label">Práctica visual</span>
-      <h2 class="section-title display">El día a día del técnico explicado de forma simple.</h2>
-      <p class="section-desc">Mantenimiento, herramientas, instalación, atención al cliente y organización del servicio en una página más leve, rápida y adaptada a mobile.</p>
 
       <div class="moving-gallery-wrap" aria-label="Galería animada de técnicos en refrigeración">
         <div class="moving-gallery-track">
@@ -659,6 +621,29 @@ src="https://www.facebook.com/tr?id=989728143663966&ev=PageView&noscript=1"
         <div class="moving-gallery-card" data-label="Instalación residencial"><img src="AIRES_4.webp" alt="Instalación residencial de aire acondicionado" loading="lazy"></div>
         <div class="moving-gallery-card" data-label="Atención al cliente"><img src="AIRES_5.webp" alt="Técnico atendiendo cliente con tablet" loading="lazy"></div>
         </div>
+      </div>
+
+      <div class="cards-grid" style="margin-top:40px;">
+        <div class="card"><div class="card-icon">01</div><p class="card-title">Instalación de minisplit</p><p class="card-body">Entiende qué pasa en una instalación residencial, qué cuidados importan y qué etapas no se pueden ignorar.</p></div>
+        <div class="card"><div class="card-icon">02</div><p class="card-title">Mantenimiento preventivo</p><p class="card-body">Aprende la lógica de limpieza, inspección, filtros, serpentín, drenaje, ruidos y caída de rendimiento.</p></div>
+        <div class="card"><div class="card-icon">03</div><p class="card-title">Diagnóstico de fallas</p><p class="card-body">No enfría, gotea agua, hace ruido, se apaga, mal olor o consumo alto: aprende a investigar el origen.</p></div>
+        <div class="card"><div class="card-icon">04</div><p class="card-title">Primeros clientes</p><p class="card-body">Cómo poner precio con criterio, armar una oferta simple, presentarte y conseguir tus primeros servicios.</p></div>
+      </div>
+
+      <a href="#purchase" class="btn-main">Quiero acceder al curso</a>
+    </div>
+  </section>
+
+  <section id="why-works" class="content-section">
+    <div class="container center">
+      <span class="section-label">Por qué funciona</span>
+      <h2 class="section-title display">Aprendes primero lo que genera servicio real.</h2>
+      <p class="section-desc">El enfoque es directo: entender el sistema, ver el procedimiento y transformar ese conocimiento en un servicio real. La demanda de buenos técnicos supera la oferta en muchas ciudades.</p>
+
+      <div class="cards-grid">
+        <div class="card"><div class="number-icon">01</div><p class="card-title">Visualiza el sistema</p><p class="card-body">Entiende evaporadora, condensadora, tuberías, drenaje, eléctrica básica y la función de cada componente.</p></div>
+        <div class="card"><div class="number-icon">02</div><p class="card-title">Aprende el procedimiento</p><p class="card-body">Mira los pasos de instalación, mantenimiento y diagnóstico en orden lógico, sin relleno y sin complicar el inicio.</p></div>
+        <div class="card"><div class="number-icon">03</div><p class="card-title">Conviértelo en oferta</p><p class="card-body">Usa el conocimiento para ofrecer servicios iniciales con alcance claro, precio responsable y comunicación profesional. Con un solo servicio realizado, el curso ya se paga solo.</p></div>
       </div>
     </div>
   </section>
@@ -696,17 +681,7 @@ src="https://www.facebook.com/tr?id=989728143663966&ev=PageView&noscript=1"
       <span class="section-label">Oferta limitada</span>
       <h2 class="section-title display">Valor de tu <em class="accent-blue">inversión</em></h2>
 
-      <div class="countdown-wrap" aria-label="Contador de oferta">
-        <div class="countdown-block"><span class="countdown-num" id="cd-hours">00</span><span class="countdown-text">Horas</span></div>
-        <div class="countdown-block"><span class="countdown-num" id="cd-mins">00</span><span class="countdown-text">Min</span></div>
-        <div class="countdown-block"><span class="countdown-num" id="cd-secs">00</span><span class="countdown-text">Seg</span></div>
-      </div>
-
       <div class="price-box">
-        <p class="price-old-row">De <s>$47</s> por <span class="discount-badge">-79%</span></p>
-        <p class="price-new display"><span>$</span>9.90</p>
-        <p class="price-note">USD · pago único · acceso inmediato</p>
-
         <ul class="feature-list">
           <li><span class="feature-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 6l9 6 9-6M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span> Envío inmediato por correo</li>
           <li><span class="feature-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5.2 3.4 9.8 8 11 4.6-1.2 8-5.8 8-11V5l-8-3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span> Garantía de 7 días</li>
@@ -715,9 +690,11 @@ src="https://www.facebook.com/tr?id=989728143663966&ev=PageView&noscript=1"
           <li><span class="feature-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 12v8H4v-8M2 7h20v5H2V7zM12 7v13M12 7c-1.5-3-6-3-6 0s4.5 3 6 0zM12 7c1.5-3 6-3 6 0s-4.5 3-6 0z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span> + 3 bonos incluidos: herramientas, checklist y clientes (valor $35, hoy gratis)</li>
         </ul>
 
+        <p class="price-old-row">De <s>$47</s> por <span class="discount-badge">-79%</span></p>
+        <p class="price-new display"><span>$</span>9.90</p>
+        <p class="price-note">El valor final será cobrado en tu moneda local al momento del pago.</p>
+
         <a href="https://pay.hotmart.com/C106584372E" class="btn-main btn-static js-checkout" style="width:100%;">Asegurar mi acceso por $9.90</a>
-        <p class="purchase-meta"><span class="feature-icon" style="width:16px;height:16px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5.2 3.4 9.8 8 11 4.6-1.2 8-5.8 8-11V5l-8-3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span> Compra 100% segura</p>
-        <p class="purchase-meta">El valor final será cobrado en tu moneda local al momento del pago.</p>
       </div>
     </div>
   </section>
@@ -734,7 +711,6 @@ src="https://www.facebook.com/tr?id=989728143663966&ev=PageView&noscript=1"
       </div>
 
       <a href="#purchase" class="btn-main">Quiero empezar ahora</a>
-      <p class="btn-meta">Compra segura · Solo $9.90</p>
     </div>
   </section>
 
@@ -770,11 +746,14 @@ src="https://www.facebook.com/tr?id=989728143663966&ev=PageView&noscript=1"
   </footer>
 
 <script>
-  const esDays = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
-  const esMonths = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
   const now = new Date();
   const urgencyDate = document.getElementById('urgency-date');
-  if (urgencyDate) urgencyDate.textContent = esDays[now.getDay()] + ', ' + now.getDate() + ' de ' + esMonths[now.getMonth()];
+  if (urgencyDate) {
+    const dd = String(now.getDate()).padStart(2, '0');
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const yy = String(now.getFullYear()).slice(-2);
+    urgencyDate.textContent = dd + '/' + mm + '/' + yy;
+  }
 
   function updateCountdown() {
     const current = new Date();
